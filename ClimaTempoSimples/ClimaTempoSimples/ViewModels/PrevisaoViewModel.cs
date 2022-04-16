@@ -1,9 +1,4 @@
-﻿
-using ClimaTempoSimples.Model;
-using System.Collections.Generic;
-using System;
-
-namespace ClimaTempoSimples.ViewModel
+﻿namespace ClimaTempoSimples.ViewModel
 {
     public class PrevisaoViewModel
     {

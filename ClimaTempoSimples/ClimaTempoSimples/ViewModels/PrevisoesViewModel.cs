@@ -1,5 +1,4 @@
-﻿
-using ClimaTempoSimples.Model;
+﻿using ClimaTempoSimples.Model;
 using System.Collections.Generic;
 
 namespace ClimaTempoSimples.ViewModel
