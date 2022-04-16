@@ -1,0 +1,123 @@
+﻿@model ClimaTempoSimples.ViewModel.PrevisoesViewModel
+
+@{
+    ViewBag.Title = "Previsão do Tempo Simples";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            <h2>Cidades mais quentes de hoje</h2>
+        </th>
+        <th>
+            <h2>Cidades mais frias de hoje</h2>
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisQuentes[0].Cidade.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisQuentes[0].TemperaturaMaxima)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisQuentes[0].TemperaturaMinima)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.ClimasMaisQuentes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TemperaturaMaxima)º
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TemperaturaMinima)º
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </td>
+        <td>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisFrios[0].Cidade.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisFrios[0].TemperaturaMaxima)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClimasMaisFrios[0].TemperaturaMinima)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.ClimasMaisFrios)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TemperaturaMaxima)º
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TemperaturaMinima)º
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </td>
+    </tr>
+</table>
+@Html.DropDownList("Cidade", ViewBag.Cidades as SelectList, "-- Selecione --", htmlAttributes: new { @class = "form-control" })
+
+<div id="Previsoes"></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+
+    var cidade = $("#Cidade");
+    cidade.change(function () {
+        var divPai = $('#Previsoes');
+        divPai.empty();
+        if (cidade.val()) {
+            var request = { "cidadeId": cidade.val() };
+           
+            $.get("/ClimaTempo/buscarprevisoesporcidade/", request, function (retorno) {
+                var strTabela = "<table><tr>"
+                retorno.Data.forEach(function (previsao) {
+                    strTabela += "<td>"
+                    var strTabelaFilha = "<table style='border: 1px solid;'>";
+                    var campos = "<tr align='center' style='border: 1px solid;'><td><b>" + previsao.DiaPrevisao + "</b></td></tr>"
+                    campos += "<tr><td>" + previsao.Clima + "</td></tr>"
+                    campos += "<tr><td>Máxima:" + previsao.TemperaturaMaxima + "º</td></tr>"
+                    campos += "<tr><td>Mínima:" + previsao.TemperaturaMinima + "º</td></tr>"
+                    strTabelaFilha += campos + "</table>"
+                    strTabela += strTabelaFilha + "</td>"
+                    
+                });
+                strTabela += "</tr></table>"
+                divPai.append(strTabela);
+
+            }, "json");
+        }
+    });
+
+</script>
+
+
