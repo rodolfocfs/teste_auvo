@@ -17,78 +17,80 @@
 
         protected override void Seed(ClimaTempoSimples.DAL.ClimaTempoSimplesContext context)
         {
+            Random numeroAleatorio = new Random();
+
             var estados = new List<Estado>
             {
                 new Estado { UF = "GO",   Nome = "Goiás",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Goiânia", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Goiânia", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "SP",   Nome = "São Paulo",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "São Paulo", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "São Paulo", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "AC",   Nome = "Acre",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Rio Branco", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Rio Branco", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "AL",   Nome = "Alagoas",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Maceió", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Maceió", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "AP",   Nome = "Amapá" },
 
                 new Estado { UF = "AM",   Nome = "Amazonas",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Manaus", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Manaus", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "BA",   Nome = "Bahia",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Salvador", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Salvador", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "CE",   Nome = "Ceará",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Fortaleza", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Fortaleza", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "DF",   Nome = "Distrito Federal",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Brasília", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Brasília", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "ES",   Nome = "Espirito Santo",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Vitória", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Vitória", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "MA",   Nome = "Maranhão",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "São Luis", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "São Luis", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "MT",   Nome = "Mato Grosso",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Cuiabá", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Cuiabá", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "MS",   Nome = "Mato Grosso do Sul",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Campo Grande", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Campo Grande", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "MG",   Nome = "Minas Gerais",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Belo Horizonte", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Belo Horizonte", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "PA",   Nome = "Pará",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Belém", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Belém", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
                 new Estado { UF = "PB",   Nome = "Paraíba" },
@@ -101,7 +103,7 @@
 
                 new Estado { UF = "RJ",   Nome = "Rio de Janeiro",
                     Cidades = new List<Cidade>{
-                        new Cidade {Nome = "Rio de Janeiro", Previsoes = GerarPrevisoesAleatorias()}
+                        new Cidade {Nome = "Rio de Janeiro", Previsoes = GerarPrevisoesAleatorias(numeroAleatorio)}
                     }
                 },
 
@@ -126,7 +128,7 @@
 
         }
 
-        private List<PrevisaoClima> GerarPrevisoesAleatorias()
+        private List<PrevisaoClima> GerarPrevisoesAleatorias(Random numeroAleatorio)
         {
             int quantidade = 10;
             List<PrevisaoClima> retorno = new List<PrevisaoClima>();
@@ -135,7 +137,7 @@
 
             for (int i = 0; i < quantidade; i++)
             {
-                Random numeroAleatorio = new Random();
+
                 decimal temperaturaMinima = numeroAleatorio.Next(20, 45) + (decimal)numeroAleatorio.NextDouble();
                 decimal temperaturaMaxima = numeroAleatorio.Next(-10, 19) + (decimal)numeroAleatorio.NextDouble();
 

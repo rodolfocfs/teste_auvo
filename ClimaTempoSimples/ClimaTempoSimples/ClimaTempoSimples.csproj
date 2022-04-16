@@ -185,10 +185,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\ClimaTempo\Create.cshtml" />
-    <Content Include="Views\ClimaTempo\Delete.cshtml" />
-    <Content Include="Views\ClimaTempo\Details.cshtml" />
-    <Content Include="Views\ClimaTempo\Edit.cshtml" />
     <Content Include="Views\ClimaTempo\Index.cshtml" />
     <Content Include="Views\ClimaTempo\About.cshtml" />
   </ItemGroup>
